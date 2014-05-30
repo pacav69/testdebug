@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form name="upddartsleague">
+	<fieldset name="upddartsleague">
+
+		<field name="id" type="sql" multiple="false" size="1"
+			label="COM_DARTSLEAGUE_FORM_LBL_UPDDARTSLEAGUE_ID" description="COM_DARTSLEAGUE_FORM_DESC_UPDDARTSLEAGUE_ID"
+			query="select id, greeting from #__dartsleague" key_field="id"
+			value_field="greeting" default="0" required="true">
+			<option value="">JOPTION_SELECT_ID</option>
+		</field>
+
+		<field name="greeting" type="text"
+			description="COM_DARTSLEAGUE_FORM_DESC_UPDDARTSLEAGUE_GREETING" label="COM_DARTSLEAGUE_FORM_LBL_UPDDARTSLEAGUE_GREETING"
+			required="true" size="50" />
+
+	</fieldset>
+</form>

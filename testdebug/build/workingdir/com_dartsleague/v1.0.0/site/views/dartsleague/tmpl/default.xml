@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="COM_DARTSLEAGUE_DARTSLEAGUE_VIEW_DEFAULT_TITLE">
+		<message>COM_DARTSLEAGUE_DARTSLEAGUE_VIEW_DEFAULT_DESC</message>
+	</layout>
+	<fields name="request"
+		addfieldpath="/administrator/components/com_dartsleague/models/fields">
+		<fieldset name="request">
+			<field name="id" type="dartsleague"
+				label="COM_DARTSLEAGUE_DARTSLEAGUE_FIELD_GREETING_LABEL" description="COM_DARTSLEAGUE_DARTSLEAGUE_FIELD_GREETING_DESC" />
+		</fieldset>
+	</fields>
+</metadata>
+

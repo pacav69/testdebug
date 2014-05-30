@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project>
+<!-- For Eclipse -->
+<!-- Create joomla project -->
+<!-- Copy custom files -->
+<!-- Author Paul Cavanagh (pacav69) -->
+
+<project name="copy_custom files" default="init" basedir=".">
+	<description>Ant - Copy custom files by Paul Cavanagh (pacav69)
+		version
+		1.0</description>
+
+	<!-- load variables from config file -->
+	<property name="cfg.configFile" location="antconfig.properties" />
+	<loadproperties srcfile="${cfg.configFile}" />
+
+	<property name="cfg.comName" value="com_${cfg.name}" />
+	<property name="cfg.comNameFile" value="com_${cfg.name}.xml" />
+	<property name="cfg.comDir" value="${basedir}/${cfg.version}/${cfg.comName}" />
+	<property name="searchmenu" value="&lt;/menu&gt;" />
+	<property name="repsubhmenu" value="&lt;/menu&gt;&lt;submenu&gt;&lt;/submenu&gt;" />
+
+
+
+	<!-- custom dir source -->
+	<property name="customsrcFilesDir" value="${basedir}\custom" />
+
+	<!-- custom search and replace -->
+	<!-- this is the graphic for the admin view -->
+	<property name="logo48x48" value="silverpclogo48x48.png"
+		description="search for tux-48x48.png replace with logo48x48.png" />
+
+	<!-- this is the graphic for the admin menu -->
+	<property name="menu16x16" value="dl-icon16x16.png"
+		description="search for tux-16x16.png replace with menu16x16.png" />
+
+	<property name="submenu16x16" value="submenu16x16.png"
+		description="search for subtux-16x16.png replace with submenu16x16.png" />
+
+	<target name="init" description="copy custom files to dev directory">
+
+		<!-- copy files from custom dir to component development dir and search 
+			and replace text -->
+
+		<copy todir="${cfg.comDir}" overwrite="true">
+			<fileset dir="${customsrcFilesDir}" />
+		</copy>
+
+		<echo message="replace tux-48x48.png logo" />
+		<replaceregexp match="tux-48x48.png" replace="${logo48x48}}"
+			flags="g" byline="true">
+			<fileset dir="${cfg.comDir}" description="files in component dir">
+				<include name="**/*" />
+			</fileset>
+		</replaceregexp>
+
+		<echo message="replace tux-16x16.png logo" />
+		<replaceregexp match="tux-16x16.png" replace="${menu16x16}"
+			flags="g" byline="true">
+			<fileset dir="${cfg.comDir}" description="files in component dir">
+				<include name="**/*" />
+			</fileset>
+		</replaceregexp>
+
+		<echo message="replace subtux-16x16.png logo" />
+		<replaceregexp match="subtux-16x16.png" replace="${submenu16x16}"
+			flags="g" byline="true">
+			<fileset dir="${cfg.comDir}" description="files in component dir">
+				<include name="**/*" />
+			</fileset>
+		</replaceregexp>
+
+
+	</target>
+
+</project>

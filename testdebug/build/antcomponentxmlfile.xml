@@ -1,0 +1,286 @@
+<!DOCTYPE project>
+<!-- For Eclipse -->
+<!-- Build componentname.xml file for joomla project -->
+
+<project name="componentname.xml" default="init" basedir=".">
+	<description>Ant Build File for Joomla project by Paul Cavanagh
+		(pacav69) to create componentname.xml file</description>
+	<!-- Notes Replacement of characters in files for use with <echo message="your 
+		text"> Use ${line.separator} for line breaks, use &lt; for < , use &gt; for 
+		> , use &quot; for double quotes " , to use the text &amp in echo use &#38; 
+		which is the code for the character & then append the text amp eg <property 
+		name="txtamp" value="&#38;amp;"/> which would return &amp eg this <?xml version="1.0" 
+		encoding="utf-8"?> becomes <echo message="&lt;?xml version=&quot;1.0&quot; 
+		encoding=&quot;utf-8&quot;?&gt;" file="componentname.xml" append="false" 
+		/> -->
+
+	<!-- load variables from config file -->
+	<property name="cfg.configFile" location="antconfig.properties" />
+	<loadproperties srcfile="${cfg.configFile}" />
+
+
+	<property name="cfg.comName" value="com_${cfg.name}" />
+	<property name="cfg.comNameUpper" value="COM_${cfg.nameUpper}" />
+	<property name="cfg.comDir" value="${basedir}/${cfg.version}/${cfg.comName}" />
+	<property name="cfg.comXML" value="${cfg.name}.xml" />
+	<property name="cfg.comPHP" value="${cfg.name}.php" />
+	<!-- to use the text &amp in echo use &#38; which is the code for the character 
+		& then append the text amp -->
+	<property name="txtamp" value="&#38;amp;" />
+
+
+	<target name="init" description="Build componentname.xml file for joomla project">
+
+		<!-- create file componentname.xml and add first line -->
+
+		<echo
+			message="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="false" />
+		<echo
+			message="${line.separator}&lt;extension type=&quot;component&quot; version=&quot;2.5.0&quot; method=&quot;upgrade&quot;&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}" file="${cfg.comDir}/${cfg.comXML}"
+			append="true" />
+		<echo message="${line.separator}&lt;name&gt;${cfg.comNameUpper}&lt;/name&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo
+			message="${line.separator}&lt;!-- The following elements are optional and free of formatting conttraints --&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo
+			message="${line.separator}&lt;creationDate&gt;${creationDate}&lt;/creationDate&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;author&gt;${author}&lt;/author&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo
+			message="${line.separator}&lt;authorEmail&gt;${authorEmail}&lt;/authorEmail&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo
+			message="${line.separator}&lt;authorUrl&gt;${authorUrl}&lt;/authorUrl&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo
+			message="${line.separator}&lt;copyright&gt;${copyright}&lt;/copyright&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;license&gt;${license}&lt;/license&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo
+			message="${line.separator}&lt;!--  The version string is recorded in the components table --&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;version&gt;${cfg.version}&lt;/version&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo
+			message="${line.separator}&lt;!-- The description is optional and defaults to the name --&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo
+			message="${line.separator}&lt;description&gt;${cfg.comNameUpper}_DESCRIPTION&lt;/description&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}" file="${cfg.comDir}/${cfg.comXML}"
+			append="true" />
+		<echo
+			message="${line.separator}&lt;!-- Runs on install/uninstall/update; New in 1.6 --&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo
+			message="${line.separator}&lt;scriptfile&gt;script.php&lt;/scriptfile&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}" file="${cfg.comDir}/${cfg.comXML}"
+			append="true" />
+		<echo message="${line.separator}&lt;install&gt;&lt;!-- Runs on install --&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;sql&gt;" file="${cfg.comDir}/${cfg.comXML}"
+			append="true" />
+		<echo
+			message="${line.separator}&lt;file driver=&quot;mysql&quot; charset=&quot;utf8&quot;&gt;sql/install.mysql.utf8.sql&lt;/file&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;/sql&gt;" file="${cfg.comDir}/${cfg.comXML}"
+			append="true" />
+		<echo message="${line.separator}&lt;/install&gt;" file="${cfg.comDir}/${cfg.comXML}"
+			append="true" />
+		<echo
+			message="${line.separator}&lt;uninstall&gt;&lt;!-- Runs on uninstall --&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;sql&gt;" file="${cfg.comDir}/${cfg.comXML}"
+			append="true" />
+		<echo
+			message="${line.separator}&lt;file driver=&quot;mysql&quot; charset=&quot;utf8&quot;&gt;sql/uninstall.mysql.utf8.sql&lt;/file&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;/sql&gt;" file="${cfg.comDir}/${cfg.comXML}"
+			append="true" />
+		<echo message="${line.separator}&lt;/uninstall&gt;" file="${cfg.comDir}/${cfg.comXML}"
+			append="true" />
+		<echo
+			message="${line.separator}&lt;update&gt;&lt;!-- Runs on update; New in 1.6 --&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;schemas&gt;" file="${cfg.comDir}/${cfg.comXML}"
+			append="true" />
+		<echo
+			message="${line.separator}&lt;schemapath type=&quot;mysql&quot;&gt;sql/updates/mysql&lt;/schemapath&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;/schemas&gt;" file="${cfg.comDir}/${cfg.comXML}"
+			append="true" />
+		<echo message="${line.separator}&lt;/update&gt;" file="${cfg.comDir}/${cfg.comXML}"
+			append="true" />
+		<echo message="${line.separator}" file="${cfg.comDir}/${cfg.comXML}"
+			append="true" />
+
+		<echo message="${line.separator}&lt;!-- Site Main File Copy Section --&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo
+			message="${line.separator}&lt;!-- Note the folder attribute: This attribute describes the folder to copy FROM in the package to install therefore files copied in this section are copied from /site/ in the package --&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+
+		<!-- todo: remove details of files - create code to append site files and 
+			directories -->
+
+		<!-- site files -->
+		<echo message="${line.separator}" file="${cfg.comDir}/${cfg.comXML}"
+			append="true" />
+		<echo message="${line.separator}&lt;files folder=&quot;site&quot;&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;filename&gt;index.html&lt;/filename&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo
+			message="${line.separator}&lt;filename&gt;${cfg.comPHP}&lt;/filename&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo
+			message="${line.separator}&lt;filename&gt;controller.php&lt;/filename&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;folder&gt;views&lt;/folder&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;folder&gt;models&lt;/folder&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;folder&gt;controllers&lt;/folder&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;folder&gt;language&lt;/folder&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;/files&gt;" file="${cfg.comDir}/${cfg.comXML}"
+			append="true" />
+		<echo message="${line.separator}" file="${cfg.comDir}/${cfg.comXML}"
+			append="true" />
+
+		<!-- todo: remove details of files create code to append media files and 
+			directories -->
+
+		<!-- media files -->
+		<echo message="${line.separator}" file="${cfg.comDir}/${cfg.comXML}"
+			append="true" />
+		<echo
+			message="${line.separator}&lt;media destination=&quot;${cfg.comName}&quot; folder=&quot;media&quot;&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;filename&gt;index.html&lt;/filename&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;folder&gt;css&lt;/folder&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;folder&gt;images&lt;/folder&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;/media&gt;" file="${cfg.comDir}/${cfg.comXML}"
+			append="true" />
+		<echo message="${line.separator}" file="${cfg.comDir}/${cfg.comXML}"
+			append="true" />
+		<echo message="${line.separator}&lt;administration&gt;" file="${cfg.comDir}/${cfg.comXML}"
+			append="true" />
+
+		<!-- Administration Menu Section -->
+		<echo message="${line.separator}&lt;!-- Administration Menu Section --&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo
+			message="${line.separator}&lt;menu img=&quot;../media/${cfg.comName}/images/tux-16x16.png&quot;&gt;${cfg.comNameUpper}_MENU&lt;/menu&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+
+		<echo
+			message="${line.separator}&lt;submenu&gt;&lt;menu img=&quot;../media/${cfg.comName}/images/subtux-16x16.png&quot; alt=&quot;${cfg.comNameUpper}_MENU&quot; view=&quot;categories${txtamp}extension=${cfg.comName}&quot; link=&quot;option=${cfg.comName}&quot;&gt;${cfg.comNameUpper}_MENU&lt;/menu&gt;&lt;/submenu&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+
+		<!-- admin files -->
+
+		<echo message="${line.separator}" file="${cfg.comDir}/${cfg.comXML}"
+			append="true" />
+		<echo
+			message="${line.separator}&lt;!-- Administration Main File Copy Section --&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo
+			message="${line.separator}&lt;!-- Note the folder attribute: This attribute describes the folder
+					to copy FROM in the package to install therefore files copied
+					in this section are copied from /admin/ in the package --&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+
+		<!-- todo: remove details of files create code to append admin files and 
+			directories -->
+
+		<echo message="${line.separator}&lt;files folder=&quot;admin&quot;&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;!-- Admin Main File Copy Section --&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;filename&gt;index.html&lt;/filename&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;filename&gt;config.xml&lt;/filename&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;filename&gt;access.xml&lt;/filename&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo
+			message="${line.separator}&lt;filename&gt;${cfg.comPHP}&lt;/filename&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo
+			message="${line.separator}&lt;filename&gt;controller.php&lt;/filename&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;!-- SQL files section --&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;folder&gt;sql&lt;/folder&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;!-- tables files section --&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;folder&gt;tables&lt;/folder&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;!-- models files section --&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;folder&gt;models&lt;/folder&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;!-- views files section --&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;folder&gt;views&lt;/folder&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;!-- controllers files section --&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;folder&gt;controllers&lt;/folder&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;!-- helpers files section --&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;folder&gt;helpers&lt;/folder&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;/files&gt;" file="${cfg.comDir}/${cfg.comXML}"
+			append="true" />
+		<echo message="${line.separator}" file="${cfg.comDir}/${cfg.comXML}"
+			append="true" />
+		<echo message="${line.separator}&lt;languages folder=&quot;admin&quot;&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo
+			message="${line.separator}&lt;language tag=&quot;en-GB&quot;&gt;language/en-GB/en-GB.${cfg.comName}.ini&lt;/language&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo
+			message="${line.separator}&lt;language tag=&quot;en-GB&quot;&gt;language/en-GB/en-GB.${cfg.comName}.sys.ini&lt;/language&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;/languages&gt;" file="${cfg.comDir}/${cfg.comXML}"
+			append="true" />
+		<echo message="${line.separator}&lt;/administration&gt;" file="${cfg.comDir}/${cfg.comXML}"
+			append="true" />
+		<echo message="${line.separator}" file="${cfg.comDir}/${cfg.comXML}"
+			append="true" />
+		<echo message="${line.separator}&lt;!-- UPDATESERVER DEFINITION --&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}&lt;updateservers&gt;" file="${cfg.comDir}/${cfg.comXML}"
+			append="true" />
+		<echo
+			message="${line.separator}&lt;!-- Note: No spaces or linebreaks allowed between the server tags --&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo
+			message="${line.separator}&lt;server type=&quot;extension&quot; priority=&quot;1&quot; name=&quot;${updateserversname}&quot;&gt;${updateservers}&lt;/server&gt;&lt;/updateservers&gt;"
+			file="${cfg.comDir}/${cfg.comXML}" append="true" />
+		<echo message="${line.separator}" file="${cfg.comDir}/${cfg.comXML}"
+			append="true" />
+
+		<!-- todo: search for /extension and append the admin and site listing -->
+
+		<echo message="${line.separator}&lt;/extension&gt;" file="${cfg.comDir}/${cfg.comXML}"
+			append="true" />
+
+	</target>
+
+</project>

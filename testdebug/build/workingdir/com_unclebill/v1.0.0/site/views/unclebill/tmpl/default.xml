@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="COM_UNCLEBILL_UNCLEBILL_VIEW_DEFAULT_TITLE">
+		<message>COM_UNCLEBILL_UNCLEBILL_VIEW_DEFAULT_DESC</message>
+	</layout>
+	<fields name="request"
+		addfieldpath="/administrator/components/com_unclebill/models/fields">
+		<fieldset name="request">
+			<field name="id" type="unclebill"
+				label="COM_UNCLEBILL_UNCLEBILL_FIELD_GREETING_LABEL" description="COM_UNCLEBILL_UNCLEBILL_FIELD_GREETING_DESC" />
+		</fieldset>
+	</fields>
+</metadata>
+

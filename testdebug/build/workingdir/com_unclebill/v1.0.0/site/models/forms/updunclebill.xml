@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form name="updunclebill">
+	<fieldset name="updunclebill">
+
+		<field name="id" type="sql" multiple="false" size="1"
+			label="COM_UNCLEBILL_FORM_LBL_UPDUNCLEBILL_ID" description="COM_UNCLEBILL_FORM_DESC_UPDUNCLEBILL_ID"
+			query="select id, greeting from #__unclebill" key_field="id"
+			value_field="greeting" default="0" required="true">
+			<option value="">JOPTION_SELECT_ID</option>
+		</field>
+
+		<field name="greeting" type="text"
+			description="COM_UNCLEBILL_FORM_DESC_UPDUNCLEBILL_GREETING" label="COM_UNCLEBILL_FORM_LBL_UPDUNCLEBILL_GREETING"
+			required="true" size="50" />
+
+	</fieldset>
+</form>

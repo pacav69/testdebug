@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+  <name>player Edit Form</name>
+  <params group="player-view-options-listings" addpath="/administrator/components/com_dartsleague/elements">
+    <param name="catplayerTitle" type="list" default="" label="Title" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+<!--     <param name="catplayerTitleLinked" type="list" default="" label="Link on title" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param> -->
+<!--     <param name="catplayerFeaturedNotice" type="list" default="" label="Featured notice (next to title)" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param> -->
+    <param name="catplayerAuthor" type="list" default="" label="Author" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="catplayerDateCreated" type="list" default="" label="player created date and time" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="catplayerRating" type="list" default="" label="Rating (voting)" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="catplayerImage" type="list" default="" label="Image" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="catplayerIntroText" type="list" default="" label="Introtext" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="catplayerHits" type="list" default="" label="Hits" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="catplayerCategory" type="list" default="" label="Category" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="catplayerTags" type="list" default="" label="Tags" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+
+<!--     <param name=" " type="header" default="Advanced" label="" description="" />
+    <param name="catplayerdartsleaguePlugins" type="list" default="" label="Enable dartsleague plugins" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">No</option>
+      <option value="1">Yes</option>
+    </param>
+  </params> -->
+  
+  <params group="player-view-options" addpath="/administrator/components/com_dartsleague/elements">
+    <param name="playerDateCreated" type="list" default="" label="player created date and time" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="playerTitle" type="list" default="" label="Title" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="playerFeaturedNotice" type="list" default="" label="Featured notice (next to title)" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="playerAuthor" type="list" default="" label="Author" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="playerFontResizer" type="list" default="" label="Font resizer" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="playerPrintButton" type="list" default="" label="Print button" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="playerEmailButton" type="list" default="" label="Email button" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="playerSocialButton" type="list" default="" label="Social button like ShareThis, AddThis etc." description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="playerImageGalleryAnchor" type="list" default="" label="Anchor link to image gallery" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="playerCommentsAnchor" type="list" default="" label="Anchor link (with comments counter) to comment form" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="playerRating" type="list" default="" label="Rating (voting)" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="playerImage" type="list" default="" label="Image" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="playerImgSize" type="list" default="" label="Image size" description="">
+      <option value="">Inherit from category</option>
+      <option value="XSmall">XSmall</option>
+      <option value="Small">Small</option>
+      <option value="Medium">Medium</option>
+      <option value="Large">Large</option>
+      <option value="XLarge">XLarge</option>
+    </param>
+    <param name="playerImageMainCaption" type="list" default="" label="Image caption" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="playerImageMainCredits" type="list" default="" label="Image credits" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="playerIntroText" type="list" default="" label="Introtext" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="playerFullText" type="list" default="" label="Fulltext" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="playerDateModified" type="list" default="" label="player modified date and time" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="playerHits" type="list" default="" label="Hits (page views)" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="playerTwitterLink" type="list" default="" label="Tweet this link" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="playerCategory" type="list" default="" label="Category" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="playerTags" type="list" default="" label="Tags" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="playerShareLinks" type="list" default="" label="Share (social) links" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="playerAttachments" type="list" default="" label="Attachments" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="playerAttachmentsCounter" type="list" default="" label="Attachments counter" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="playerRelated" type="list" default="" label="Related players (by tag)" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="playerRelatedLimit" type="text" default="" label="Limit for related players" size="4" description="Leave blank to inherit from category" />
+    <param name="playerVideo" type="list" default="" label="Video" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="playerImageGallery" type="list" default="" label="Image gallery" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="playerNavigation" type="list" default="" label="player navigation" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="playerComments" type="list" default="" label="Comments" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name=" " type="header" default="Author options" label="" description="" />
+    <param name="playerAuthorBlock" type="list" default="" label="Display extended author info" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="playerAuthorImage" type="list" default="" label="Author image" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="playerAuthorDescription" type="list" default="" label="Author description" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="playerAuthorURL" type="list" default="" label="Author URL" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="playerAuthorEmail" type="list" default="" label="Author e-mail" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="playerAuthorLatest" type="list" default="" label="Latest players from author" description="">
+      <option value="">Inherit from category</option>
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </param>
+    <param name="playerAuthorLatestLimit" type="text" default="" size="4" label="Limit for latest players from author" description="Leave blank to inherit from category" />
+    <param name=" " type="header" default="Advanced" label="" description="" />
+
+  </params>
+  </params>
+</form>

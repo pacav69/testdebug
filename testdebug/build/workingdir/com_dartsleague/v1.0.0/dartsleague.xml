@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="2.5.0" method="upgrade">
+
+	<name>COM_DARTSLEAGUE</name>
+	<!-- The following elements are optional and free of formatting conttraints -->
+	<creationDate>May 2014</creationDate>
+	<author>Paul Cav</author>
+	<authorEmail>pacav69@gmail.com</authorEmail>
+	<authorUrl>http://www.silverpcgroup.com</authorUrl>
+	<copyright>Copyright Info</copyright>
+	<license>License Info</license>
+	<!-- The version string is recorded in the components table -->
+	<version>v1.0.0</version>
+	<!-- The description is optional and defaults to the name -->
+	<description>COM_DARTSLEAGUE_DESCRIPTION</description>
+
+	<!-- Runs on install/uninstall/update; New in 1.6 -->
+	<scriptfile>script.php</scriptfile>
+
+	<install><!-- Runs on install -->
+		<sql>
+			<file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+		</sql>
+	</install>
+	<uninstall><!-- Runs on uninstall -->
+		<sql>
+			<file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
+		</sql>
+	</uninstall>
+	<update><!-- Runs on update; New in 1.6 -->
+		<schemas>
+			<schemapath type="mysql">sql/updates/mysql</schemapath>
+		</schemas>
+	</update>
+
+	<!-- Site Main File Copy Section -->
+	<!-- Note the folder attribute: This attribute describes the folder to copy 
+		FROM in the package to install therefore files copied in this section are 
+		copied from /site/ in the package -->
+
+	<files folder="site">
+		<filename>index.html</filename>
+		<filename>dartsleague.php</filename>
+		<filename>controller.php</filename>
+		<folder>views</folder>
+		<folder>models</folder>
+		<folder>controllers</folder>
+		<folder>language</folder>
+	</files>
+
+
+	<media destination="com_dartsleague" folder="media">
+		<filename>index.html</filename>
+		<folder>css</folder>
+		<folder>images</folder>
+	</media>
+
+	<administration>
+		<!-- Administration Menu Section -->
+		<menu img="../media/com_dartsleague/images/dl-icon16x16.png">COM_DARTSLEAGUE_MENU</menu>
+		<submenu>
+			<menu
+				img="components/com_dartsleague/assets/images/icon-16-pg-control-panel.png"
+				alt="COM_DARTSLEAGUE_CONTROLPANEL" view="controlpanel" link="option=com_dartsleague">COM_DARTSLEAGUE_CONTROLPANEL
+			</menu>
+			<!-- <menu img="../media/com_dartsleague/images/subdl-icon16x16.png" alt="COM_DARTSLEAGUE_MENU" 
+				view="categories&amp;extension=com_dartsleague" link="option=com_dartsleague">COM_DARTSLEAGUE_MENU 
+				</menu> -->
+			<menu img="../media/com_dartsleague/images/icon-16-pg-control-panel.png"
+				alt="COM_DARTSLEAGUE_PLAYERS" view="players" link="option=com_dartsleague&amp;view=players">COM_DARTSLEAGUE_PLAYERS
+			</menu>
+			<menu img="../media/com_dartsleague/images/icon-16-pg-control-panel.png"
+				alt="COM_DARTSLEAGUE_VENUES" view="venues" link="option=com_dartsleague&amp;view=venues">COM_DARTSLEAGUE_VENUES
+			</menu>
+		</submenu>
+
+		<!-- Administration Main File Copy Section -->
+		<!-- Note the folder attribute: This attribute describes the folder to 
+			copy FROM in the package to install therefore files copied in this section 
+			are copied from /admin/ in the package -->
+		<files folder="admin">
+			<!-- Admin Main File Copy Section -->
+			<filename>index.html</filename>
+			<filename>config.xml</filename>
+			<filename>access.xml</filename>
+			<filename>dartsleague.php</filename>
+			<filename>controller.php</filename>
+			<!-- SQL files section -->
+			<folder>sql</folder>
+			<!-- tables files section -->
+			<folder>tables</folder>
+			<!-- models files section -->
+			<folder>models</folder>
+			<!-- views files section -->
+			<folder>views</folder>
+			<!-- controllers files section -->
+			<folder>controllers</folder>
+			<!-- helpers files section -->
+			<folder>helpers</folder>
+		</files>
+
+		<languages folder="admin">
+			<language tag="en-GB">language/en-GB/en-GB.com_dartsleague.ini
+			</language>
+			<language tag="en-GB">language/en-GB/en-GB.com_dartsleague.sys.ini
+			</language>
+		</languages>
+	</administration>
+
+	<!-- UPDATESERVER DEFINITION -->
+	<updateservers>
+		<!-- Note: No spaces or linebreaks allowed between the server tags -->
+		<server type="extension" priority="1" name="SilverPCgroup Update Site">http://www.silverpcgroup.com/update/dartsleague-update.xml
+		</server>
+	</updateservers>
+
+</extension>

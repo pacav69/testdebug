@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project>
+<!-- For Eclipse -->
+<!-- Create joomla project -->
+<!-- Author Paul Cavanagh (pacav69) -->
+
+<project name="basic_component_build" default="build" basedir=".">
+	<description>Ant - Create joomla project by Paul Cavanagh (pacav69)
+		version 1.0</description>
+
+	<!-- load variables from config file -->
+	<property name="cfg.configFile" location="antconfig.properties" />
+	<loadproperties srcfile="${cfg.configFile}" />
+	<property name="cfg.workingdir" value="workingdir"/>
+
+
+	<!-- Modify variables from config files for use with this file -->
+
+	<property name="cfg.comName" value="com_${cfg.name}" />
+	<property name="cfg.comDir"
+	          value="${basedir}/${cfg.workingdir}/${cfg.comName}/${cfg.version}" />
+	<property name="cfg.buildVersion" value="${cfg.version}" />
+	<!-- name of componentname.xml file -->
+	<property name="cfg.comXML" value="${cfg.name}.xml" />
+
+	<property name="cfg.buildVersionDir"
+	          value="${cfg.buildDir}/${cfg.workingdir}/${cfg.comName}/${cfg.versionDir}" />
+
+
+	<property name="cfg.adminFilesDir" location="${cfg.comDir}/admin" />
+	<property name="cfg.siteFilesDir" location="${cfg.comDir}/site" />
+	<property name="cfg.extensionsDir"
+	          location="${cfg.adminFilesDir}/extensions" />
+
+	<!-- Template dir source -->
+	<property name="sitesrcFilesDir"
+	          value="${basedir}\templates\com_helloworld_0.0.19" />
+
+	<!-- search regular expressions variables -->
+	<property name="helloworld" value="${cfg.name}" />
+	<property name="HELLOWORLD" value="${cfg.nameUpper}" />
+	<property name="HelloWorld" value="${cfg.namecamelcase}" />
+
+	<!-- Create joomla project starting here -->
+	<target name="build"
+	        depends="init, initsearchtokens, build_component.xml, AddingCustomFiles, info" />
+
+	<target name="init" description="creates necessary directories for build">
+
+		<!-- copy files from templates dir to component development dir -->
+		<mkdir dir="${cfg.comDir}" />
+		<copy todir="${cfg.comDir}" overwrite="true">
+			<fileset dir="${sitesrcFilesDir}" />
+		</copy>
+
+		<!-- rename files -->
+		<!-- rename admin files -->
+		<move file="${cfg.comDir}/admin/helloworld.php"
+		      tofile="${cfg.comDir}/admin/${cfg.name}.php" />
+		<move file="${cfg.comDir}/admin/controllers/helloworlds.php"
+		      tofile="${cfg.comDir}/admin/controllers/${cfg.name}s.php" />
+		<move file="${cfg.comDir}/admin/controllers/helloworld.php"
+		      tofile="${cfg.comDir}/admin/controllers/${cfg.name}.php" />
+		<move file="${cfg.comDir}/admin/helpers/helloworld.php"
+		      tofile="${cfg.comDir}/admin/helpers/${cfg.name}.php" />
+		<move file="${cfg.comDir}/admin/language/en-GB/en-GB.com_helloworld.ini"
+		      tofile="${cfg.comDir}/admin/language/en-GB/en-GB.com_${cfg.name}.ini" />
+		<move file="${cfg.comDir}/admin/language/en-GB/en-GB.com_helloworld.sys.ini"
+		      tofile="${cfg.comDir}/admin/language/en-GB/en-GB.com_${cfg.name}.sys.ini" />
+		<move file="${cfg.comDir}/admin/models/fields/helloworld.php"
+		      tofile="${cfg.comDir}/admin/models/fields/${cfg.name}.php" />
+		<move file="${cfg.comDir}/admin/models/forms/helloworld.js"
+		      tofile="${cfg.comDir}/admin/models/forms/${cfg.name}.js" />
+		<move file="${cfg.comDir}/admin/models/forms/helloworld.xml"
+		      tofile="${cfg.comDir}/admin/models/forms/${cfg.name}.xml" />
+		<move file="${cfg.comDir}/admin/models/helloworlds.php"
+		      tofile="${cfg.comDir}/admin/models/${cfg.name}s.php" />
+		<move file="${cfg.comDir}/admin/models/helloworld.php"
+		      tofile="${cfg.comDir}/admin/models/${cfg.name}.php" />
+		<move file="${cfg.comDir}/admin/tables/helloworld.php"
+		      tofile="${cfg.comDir}/admin/tables/${cfg.name}.php" />
+		<move file="${cfg.comDir}/admin/views/helloworlds/"
+		      tofile="${cfg.comDir}/admin/views/${cfg.name}s" />
+		<move file="${cfg.comDir}/admin/views/helloworld/"
+		      tofile="${cfg.comDir}/admin/views/${cfg.name}" />
+
+		<!-- rename site files -->
+		<move file="${cfg.comDir}/site/controllers/updhelloworld.php"
+		      tofile="${cfg.comDir}/site/controllers/upd${cfg.name}.php" />
+		<move file="${cfg.comDir}/site/language/en-GB/en-GB.com_helloworld.ini"
+		      tofile="${cfg.comDir}/site/language/en-GB/en-GB.com_${cfg.name}.ini" />
+		<move file="${cfg.comDir}/site/models/forms/updhelloworld.xml"
+		      tofile="${cfg.comDir}/site/models/forms/upd${cfg.name}.xml" />
+		<move file="${cfg.comDir}/site/models/updhelloworld.php"
+		      tofile="${cfg.comDir}/site/models/upd${cfg.name}.php" />
+		<move file="${cfg.comDir}/site/models/helloworld.php"
+		      tofile="${cfg.comDir}/site/models/${cfg.name}.php" />
+		<move file="${cfg.comDir}/site/views/helloworld/"
+		      tofile="${cfg.comDir}/site/views/${cfg.name}" />
+		<move file="${cfg.comDir}/site/views/updhelloworld/"
+		      tofile="${cfg.comDir}/site/views/upd${cfg.name}" />
+		<move file="${cfg.comDir}/site/helloworld.php"
+		      tofile="${cfg.comDir}/site/${cfg.name}.php" />
+		<!-- rename root files -->
+		<move file="${cfg.comDir}/helloworld.xml"
+		      tofile="${cfg.comDir}/${cfg.name}.xml" />
+		<move file="${cfg.comDir}/helloworld-update.xml"
+		      tofile="${cfg.comDir}/${cfg.name}-update.xml" />
+
+		<!-- create basic component.xml file by calling another ant file named 
+			antcomponentxmlfile.xml -->
+		<echo message="Creating componentname.xml file for build" />
+		<ant antfile="antcomponentxmlfile.xml" target="init">
+		</ant>
+
+		<!-- storage directory for zipped files -->
+		<mkdir dir="${basedir}/uploadzip" />
+
+	</target>
+
+	<target name="initsearchtokens"
+	        depends="init"
+	        description="search and replace tokens in files">
+
+		<!-- search and replace reg exp in files -->
+		<!--todo: code for search and replace tokens in files -->
+
+		<!-- replace camel case ComponentName -->
+		<echo message="replace camel case ComponentName " />
+		<replaceregexp match="HelloWorld"
+		               replace="${cfg.namecamelcase}"
+		               flags="g"
+		               byline="true">
+			<fileset dir="${cfg.comDir}" description="files in component dir">
+				<include name="**/*" />
+			</fileset>
+		</replaceregexp>
+
+		<!-- replace lower case componentname -->
+		<echo message="replace lower case componentname " />
+		<replaceregexp match="helloworld"
+		               replace="${cfg.name}"
+		               flags="g"
+		               byline="true">
+			<fileset dir="${cfg.comDir}" description="files in component dir">
+				<include name="**/*" />
+			</fileset>
+		</replaceregexp>
+
+		<!-- replace Upper case COMPONENRNAME -->
+		<echo message="replace Upper case COMPONENRNAME " />
+		<replaceregexp match="HELLOWORLD"
+		               replace="${cfg.nameUpper}"
+		               flags="g"
+		               byline="true">
+			<fileset dir="${cfg.comDir}" description="files in component dir">
+				<include name="**/*" />
+			</fileset>
+		</replaceregexp>
+
+		<!-- replace any other parameters componentname -->
+		<replaceregexp match="helloWorld"
+		               replace="${cfg.namecamelcase}"
+		               flags="g"
+		               byline="true">
+			<fileset dir="${cfg.comDir}" description="files in component dir">
+				<include name="**/*" />
+			</fileset>
+		</replaceregexp>
+
+		<!-- replace any other parameters componentname -->
+		<replaceregexp match="Hello World!"
+		               replace="${cfg.nameUpper}"
+		               flags="g"
+		               byline="true">
+			<fileset dir="${cfg.comDir}" description="files in component dir">
+				<include name="**/*" />
+			</fileset>
+		</replaceregexp>
+
+		<!-- replace any other parameters componentname -->
+		<replaceregexp match="Hello World"
+		               replace="${cfg.namecamelcase}"
+		               flags="g"
+		               byline="true">
+			<fileset dir="${cfg.comDir}" description="files in component dir">
+				<include name="**/*" />
+			</fileset>
+		</replaceregexp>
+	</target>
+
+	<target name="build_component.xml"
+	        description="Updates final component.xml file">
+		<echo message="Updating component.xml file" />
+		<!-- search folders and files to update component.xml file -->
+		<!-- todo: code for searching folders and files to update component.xml 
+				file -->
+	</target>
+
+	<target name="AddingCustomFiles"
+	        depends="init"
+	        description="Add custom files">
+
+		<!-- Adding custom files for build by calling another ant file named addcustom.xml -->
+		<echo message="Adding custom files for build" />
+		<ant antfile="addcustom.xml" target="init">
+		</ant>
+	</target>
+
+	<target name="build_component"
+	        description="packages the final component file">
+		<echo message="Creating zip file" />
+		<!-- <target name="build_component" depends="update_extensions" description="packages 
+				the final component file"> -->
+		<zip destfile="${basedir}/uploadzip/${cfg.comName}_${cfg.buildVersion}.zip"
+		     basedir="${cfg.comDir}" />
+	</target>
+
+
+
+	<target name="build_modules" description="packages any modules">
+		<!-- add all module directories here -->
+		<!--<zip destfile="${cfg.buildVersion}/modules/${cfg.modname}.zip" basedir="${cfg.versionDir}/${cfg.modname}" 
+				/> -->
+	</target>
+
+	<target name="build_debug" description="builds any debug plugins or code">
+		<zip destfile="${cfg.buildVersionDir}/plugins/billets_plugin_toolbox.zip"
+		     basedir="${cfg.versionDir}/billets_plugin_toolbox" />
+		<zip destfile="${cfg.buildVersionDir}/plugins/billets_plugin_debug.zip"
+		     basedir="${cfg.versionDir}/billets_plugin_debug" />
+	</target>
+
+	<!-- <target name="update_extensions" depends="build_modules" description="copies 
+			fresh builds of plugins and extensions to the admin/extensions folder"> <copy 
+			todir="${cfg.extensionsDir}" overwrite="true"> <fileset dir="${cfg.buildVersionDir}/plugins" 
+			/> </copy> <copy todir="${cfg.extensionsDir}" overwrite="true"> <fileset 
+			dir="${cfg.buildVersionDir}/modules" /> </copy> </target> -->
+
+	<target name="info" description="prints information">
+		<echo message="Project:                 ${cfg.name}" />
+		<tstamp>
+			<format property="buildtime" pattern="yyyy-MM-dd'T'HH:mm:ss" />
+		</tstamp>
+		<echo message="Buildtime:       ${buildtime}" />
+	</target>
+
+	<target name="clean_com_dir"
+	        description="Destroys all generated files and dirs of component.">
+		<delete dir="${cfg.comDir}" />
+	</target>
+
+	<target name="update_localhost"
+	        depends="info"
+	        description="attemps to update files on localhost server with files from working directory">
+		<copy todir="${cfg.localhostRoot}/administrator/components/${cfg.comName}"
+		      overwrite="true">
+			<fileset dir="${cfg.adminFilesDir}" />
+		</copy>
+		<copy todir="${cfg.localhostRoot}/components/${cfg.comName}"
+		      overwrite="true">
+			<fileset dir="${cfg.siteFilesDir}" />
+		</copy>
+	</target>
+
+
+	<target name="getfilesfrom_localhost"
+	        
+	        description="attemps to get files from localhost server directory">
+		
+		<copy todir="${cfg.adminFilesDir}"
+		      overwrite="true">
+			<fileset dir="${cfg.localhostRoot}/administrator/components/${cfg.comName}" />
+		</copy>
+		
+		<copy todir="${cfg.siteFilesDir}"
+		      overwrite="true">
+			<fileset dir="${cfg.localhostRoot}/components/${cfg.comName}" />
+		</copy>
+	</target>
+	
+	<target name="upload"
+	        description="attempts to upload build file to ftp server">
+		<fileset id="ftp.upload.fileset"
+		         dir="${cfg.buildVersionDir}/components">
+			<include name="*.zip" />
+		</fileset>
+
+		<echo>FTP target is ${ftp.server}</echo>
+		<ftp server="${ftp.server}"
+		     userid="${ftp.user}"
+		     password="${ftp.password}"
+		     action="put"
+		     remotedir="${ftp.dir}">
+			<fileset refid="ftp.upload.fileset" />
+		</ftp>
+	</target>
+
+	<!-- first process files then directories to append to the cfg.xmlfile -->
+	<target name="build_xml"
+	        description="builds an xml listing of all the files in the working copy">
+		<fileset id="site" dir="${cfg.siteFilesDir}" />
+		<echo message="${line.separator}&lt;files folder=&quot;site&quot;&gt;${line.separator}&lt;filename&gt;"
+		      file="${cfg.xmlfile}"
+		      append="false" />
+		<echo-fileset filesetref="site" />
+		<echo message="&lt;/filename&gt;${line.separator}&lt;/files&gt;${line.separator}"
+		      file="${cfg.xmlfile}"
+		      append="true" />
+
+		<fileset id="admin" dir="${cfg.adminFilesDir}" />
+		<echo message="${line.separator}&lt;files folder=&quot;admin&quot;&gt;${line.separator}&lt;filename&gt;"
+		      file="${cfg.xmlfile}"
+		      append="true" />
+		<echo-fileset filesetref="admin" />
+		<echo message="&lt;/filename&gt;${line.separator}&lt;/files&gt;${line.separator}"
+		      file="${cfg.xmlfile}"
+		      append="true" />
+
+		<replace file="${cfg.xmlfile}" token="${cfg.siteFilesDir}\" value="" />
+		<replace file="${cfg.xmlfile}" token="${cfg.adminFilesDir}\" value="" />
+	</target>
+
+	<macrodef name="echo-fileset"
+	          description="creates a printable directory listing">
+		<attribute name="filesetref" />
+		<sequential>
+			<pathconvert pathsep="&lt;/filename&gt;${line.separator}&lt;filename&gt;"
+			             property="@{filesetref}.echopath">
+				<path>
+					<fileset refid="@{filesetref}" />
+				</path>
+			</pathconvert>
+			<echo message="${@{filesetref}.echopath}"
+			      file="${cfg.xmlfile}"
+			      append="true" />
+		</sequential>
+	</macrodef>
+</project>

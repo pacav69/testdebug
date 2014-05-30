@@ -1,0 +1,45 @@
+How to install Joomla Snippets
+
+Startup eclipse
+
+edit the user.xml to your requirements
+
+Open the Snippets view by selecting from the menu bar window - show view - other
+then select General - Snippets
+
+Create folder
+then select import this should then display the joomla snippets folders
+
+If that doesn't work try this
+
+Close eclipse
+
+Open up the file user.xml which contains the joomla snippets
+don't copy the file and overwrite the user.xml file in the workspace as this doesn't appear to work
+
+select all the text and copy to the clipboard
+
+then locate the file user.xml in the workspace directory normally found in the following directory
+ 
+in windows
+\workspace\.metadata\.plugins\org.eclipse.wst.common.snippets\
+
+on a mac goto workspace directory then in finder select from the menu go - folders
+enter in .metadata/.plugins/org.eclipse.wst.common.snippets/
+
+then open up this file user.xml in a text editor and paste in the contents from the clipboard
+
+save the file
+
+Restart eclipse
+
+It should now have in the snippets view the joomla components and Packaging folders
+
+To use first create a new file and then right click on the snippet and select insert, enter in the 
+values and start coding.
+
+The snippets can be customized to your preferences.
+
+Credits
+www.newlifeinit.com
+Copyright 2010 New Life in IT Pty Ltd. All rights reserved.

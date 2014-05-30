@@ -1,0 +1,129 @@
+<!DOCTYPE project>
+<!-- For Eclipse -->
+<!-- File based on Ant Build File for Joomla by Paul Cavanagh (pacav69) -->
+
+<project name="build_xmlfiles" default="build_xmlfiles" basedir=".">
+	<description>Ant Build basic file for Joomla by Paul Cavanagh (pacav69)</description>
+
+	<!-- load variables from config file -->
+	<property name="cfg.configFile" location="antconfig.properties" />
+	<loadproperties srcfile="${cfg.configFile}" />
+	<!-- Modify variables from config files for use with file -->
+	<property name="cfg.xmlfilelist" value="listfiles.txt" />
+	<property name="cfg.comName" value="com_${cfg.name}" />
+	<property name="cfg.comDir" value="${basedir}/${cfg.version}/${cfg.comName}" />
+	<property name="cfg.buildVersion" value="${cfg.version}" />
+	<property name="cfg.extensionsDir" location="${cfg.adminFilesDir}/extensions" />
+	<property name="cfg.comXML" value="${cfg.name}.xml" />
+
+
+	<property name="cfg.adminFilesDir" location="${cfg.comDir}\admin" />
+	<property name="cfg.siteFilesDir" location="${cfg.comDir}\site" />
+
+
+	<!-- first process files then directories to append to the cfg.xmlfilelist -->
+	<target name="build_xmlfiles"
+		description="builds an xml listing of all the files in the working copy">
+
+		<dirset dir="${cfg.siteFilesDir}">
+			<patternset id="site.dir">
+				<include name="**" />
+			</patternset>
+		</dirset>
+
+
+		<fileset id="site" dir="${cfg.siteFilesDir}" />
+
+		<!-- <dirset id="site.dir" dir="${cfg.siteFilesDir}" /> <property file="foo.properties"/> 
+			<echo message=$f file="" <echo message="${line.separator}&lt;files folder=&quot;site&quot;&gt;${line.separator}&lt;filename&gt;" 
+			file="${cfg.xmlfilelist}" append="false" /> <echo-dirset dirsetref="site.dir" 
+			/> <echo message="&lt;/filename&gt;${line.separator}&lt;/files&gt;${line.separator}" 
+			file="${cfg.xmlfilelist}" append="true" /> <echo message="siteFilesDir " 
+			/> -->
+
+
+		<echo
+			message="${line.separator}&lt;files folder=&quot;site&quot;&gt;${line.separator}&lt;filename&gt;"
+			file="${cfg.xmlfilelist}" append="false" />
+		<echo-fileset filesetref="site" />
+		<echo
+			message="&lt;/filename&gt;${line.separator}&lt;/files&gt;${line.separator}"
+			file="${cfg.xmlfilelist}" append="true" />
+
+
+
+
+		<fileset id="admin" dir="${cfg.adminFilesDir}" />
+		<echo
+			message="${line.separator}&lt;files folder=&quot;admin&quot;&gt;${line.separator}&lt;filename&gt;"
+			file="${cfg.xmlfilelist}" append="true" />
+		<echo-fileset filesetref="admin" />
+		<echo
+			message="&lt;/filename&gt;${line.separator}&lt;/files&gt;${line.separator}"
+			file="${cfg.xmlfilelist}" append="true" />
+
+		<replace file="${cfg.xmlfilelist}"
+			token="D:\xampp\htdocs\joomla-cms-staging\testdebug\build\v1.0.0\com_unclebill\site\"
+			value="" />
+		<replace file="${cfg.xmlfilelist}"
+			token="D:\xampp\htdocs\joomla-cms-staging\testdebug\build\v1.0.0\com_unclebill\admin\"
+			value="" />
+
+
+		<!-- <replace file="${cfg.xmlfilelist}" token="${cfg.siteFilesDir}/" value="xx" 
+			/> -->
+		<!-- <replace file="${cfg.xmlfilelist}" token="${cfg.adminFilesDir}/" value="zz" 
+			/> -->
+	</target>
+	<!-- dirsetref -->
+	<macrodef name="echo-dirset" description="creates a printable directory listing">
+		<attribute name="dirsetref" />
+		<sequential>
+			<!-- <pathconvert pathsep="&lt;/filename&gt;${line.separator}&lt;filename&gt;" 
+				property="@{filesetref}.echopath"> -->
+
+			<pathconvert pathsep="&lt;/filename&gt;${line.separator}&lt;filename&gt;"
+				property="@{dirsetref}">
+				<path>
+					<fileset refid="@{dirsetref}" />
+				</path>
+			</pathconvert>
+			<!-- <echo message="${@{filesetref}.echopath}" file="${cfg.xmlfilelist}" 
+				append="true" /> -->
+			<!-- <echo message="${@{filesetref}}" file="${cfg.xmlfilelist}" append="true" 
+				/> -->
+			<echo message="${@{dirsetref}}" file="${cfg.xmlfilelist}"
+				append="true" />
+			<!-- <replace file="${cfg.xmlfilelist}" token="${cfg.siteFilesDir}/" value="xx" 
+				/> -->
+
+		</sequential>
+	</macrodef>
+	<!-- filesetref -->
+	<macrodef name="echo-fileset" description="creates a printable directory listing">
+		<attribute name="filesetref" />
+		<sequential>
+			<!-- <pathconvert pathsep="&lt;/filename&gt;${line.separator}&lt;filename&gt;" 
+				property="@{filesetref}.echopath"> -->
+
+			<pathconvert pathsep="&lt;/filename&gt;${line.separator}&lt;filename&gt;"
+				property="@{filesetref}">
+				<path>
+					<fileset refid="@{filesetref}" />
+				</path>
+			</pathconvert>
+			<!-- <echo message="${@{filesetref}.echopath}" file="${cfg.xmlfilelist}" 
+				append="true" /> -->
+			<!-- <echo message="${@{filesetref}}" file="${cfg.xmlfilelist}" append="true" 
+				/> -->
+			<echo message="${@{filesetref}}" file="${cfg.xmlfilelist}"
+				append="true" />
+			<!-- <replace file="${cfg.xmlfilelist}" token="${cfg.siteFilesDir}/" value="xx" 
+				/> -->
+
+		</sequential>
+	</macrodef>
+
+</project>
+
+
